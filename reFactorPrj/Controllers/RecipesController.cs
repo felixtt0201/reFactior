@@ -16,20 +16,16 @@ namespace reFactorPrj.Controllers
     {
         private reModel db = new reModel();
         private int PageSize = 9;
-   
+
         // GET: Recipes
         // 食譜頁面
-        public ActionResult Index(int Page=0)
-        {     
-            Page = Page-1 > 0 ? Page-1:0;
-            return View(db.tRecipe.OrderByDescending(m =>m.fR_Id).ToList().ToPagedList(Page,PageSize));
+        public ActionResult Index(int Page = 0)
+        {
+            Page = Page - 1 > 0 ? Page - 1 : 0;
+            return View(db.tRecipe.OrderByDescending(m => m.fR_Id).ToList().ToPagedList(Page, PageSize));
 
             //return View(db.tRecipe.OrderBy(x => Guid.NewGuid()).ToList());
-
-            
         }
-
-
 
         // 搜尋食譜
         [HttpPost]
@@ -53,7 +49,7 @@ namespace reFactorPrj.Controllers
                 return RedirectToAction("Index");
             }
         }
-      
+
         // 食譜細項
         public ActionResult Details(int Id)
         {
@@ -64,11 +60,27 @@ namespace reFactorPrj.Controllers
         // 加入購物車
         public ActionResult AddToCart(int Id)
         {
-            int UserId = (Session["isLogin"] as tMembers).fM_Id;
+            // loginUserInfo
+            var UserInfo = db.tMembers.Find(Session["isLogin"]);
+            if (UserInfo == null)
+            {
+                // 如果沒使用者 踢掉
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                List<int> RecipeIdList = (List<int>)Session["RecipeIdList"];
+                if (RecipeIdList == null)
+                {
+                    RecipeIdList = new List<int>();
+                }
+                RecipeIdList.Add(Id);
+                Session["RecipeIdList"] = RecipeIdList;
 
-            tRecipe tRecipe = db.tRecipe.Find(Id);
-            return RedirectToAction("Index","Cart",tRecipe);
+                return RedirectToAction("Index", "Carts");
+            }
         }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

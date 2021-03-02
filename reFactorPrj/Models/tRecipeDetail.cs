@@ -16,14 +16,17 @@ namespace reFactorPrj.Models
         public string Name { get; set; }
 
         [Column(TypeName = "numeric")]
-        public decimal? fRD_Dos { get; set; }
+        public decimal fRD_Dos { get; set; }
 
         [StringLength(5)]
         public string fRD_Unit { get; set; }
 
         public int Price { get; set; }
         public int? fR_Id { get; set; }
+
+        public int Total { get; set; }
+
         [ForeignKey("fR_Id")]
-        public virtual tRecipe tRecipe  { get; set; }
+        public virtual tRecipe tRecipe { get; set; }
     }
 }

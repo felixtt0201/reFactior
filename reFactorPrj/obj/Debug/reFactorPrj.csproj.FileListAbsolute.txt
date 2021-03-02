@@ -91,6 +91,9 @@ C:\Users\bem05\Desktop\練習\reFactorPrj\reFactorPrj\obj\Debug\reFactorPrj.dll
 C:\Users\bem05\Desktop\練習\reFactorPrj\reFactorPrj\obj\Debug\reFactorPrj.pdb
 C:\Users\bem05\Desktop\練習\reFactorPrj\reFactorPrj\obj\Debug\reFactorPrj.Migrations.fixGender.resources
 C:\Users\bem05\Desktop\練習\reFactorPrj\reFactorPrj\obj\Debug\reFactorPrj.csproj.GenerateResource.cache
-C:\Users\bem05\Desktop\練習\reFactorPrj\reFactorPrj\obj\Debug\reFactorPrj.csprojAssemblyReference.cache
 C:\Users\bem05\Desktop\練習\reFactorPrj\reFactorPrj\bin\MvcPaging.dll
 C:\Users\bem05\Desktop\練習\reFactorPrj\reFactorPrj\obj\Debug\reFactorPrj.Migrations.資料庫異動.resources
+C:\Users\bem05\Desktop\練習\reFactorPrj\reFactorPrj\obj\Debug\reFactorPrj.Migrations.修改tRecipes.resources
+C:\Users\bem05\Desktop\練習\reFactorPrj\reFactorPrj\obj\Debug\reFactorPrj.Migrations.test.resources
+C:\Users\bem05\Desktop\練習\reFactorPrj\reFactorPrj\obj\Debug\reFactorPrj.csprojAssemblyReference.cache
+C:\Users\bem05\Desktop\練習\reFactorPrj\reFactorPrj\obj\Debug\reFactorPrj.Migrations.total.resources

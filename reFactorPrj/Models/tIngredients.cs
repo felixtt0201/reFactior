@@ -21,6 +21,6 @@ namespace reFactorPrj.Models
         public string fRD_Unit { get; set; }
 
         [Column(TypeName = "numeric")]
-        public decimal? fI_Price { get; set; }
+        public decimal fI_Price { get; set; }
     }
 }

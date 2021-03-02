@@ -10,24 +10,28 @@ namespace reFactorPrj.Models
     [Table("tRecipe")]
     public partial class tRecipe
     {
+        public tRecipe()
+        {
+            fRD_Serving = 1;
+            fR_Pic = "1";
+        }
+
         [Key]
         public int fR_Id { get; set; }
 
         [StringLength(10)]
         public string fR_Type { get; set; }
 
-        public int? fRD_Serving { get; set; }
+        public int fRD_Serving { get; set; }
 
         [StringLength(50)]
         public string fR_Menu { get; set; }
 
         public string fR_Do { get; set; }
 
-        [StringLength(51)]
         public string fR_Pic { get; set; }
 
         // 一對多關聯
-        public virtual  ICollection<tRecipeDetail> tRecipeDetail { get; set; }
-
+        public virtual ICollection<tRecipeDetail> tRecipeDetail { get; set; }
     }
 }

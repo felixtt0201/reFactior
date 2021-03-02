@@ -146,6 +146,18 @@
     <Compile Include="Migrations\202102260250583_資料庫異動.Designer.cs">
       <DependentUpon>202102260250583_資料庫異動.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103020317177_修改tRecipes.cs" />
+    <Compile Include="Migrations\202103020317177_修改tRecipes.Designer.cs">
+      <DependentUpon>202103020317177_修改tRecipes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103020629511_test.cs" />
+    <Compile Include="Migrations\202103020629511_test.Designer.cs">
+      <DependentUpon>202103020629511_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103020703060_total.cs" />
+    <Compile Include="Migrations\202103020703060_total.Designer.cs">
+      <DependentUpon>202103020703060_total.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EnumList.cs" />
     <Compile Include="Models\reModel.cs" />
@@ -288,6 +300,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102260250583_資料庫異動.resx">
       <DependentUpon>202102260250583_資料庫異動.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103020317177_修改tRecipes.resx">
+      <DependentUpon>202103020317177_修改tRecipes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103020629511_test.resx">
+      <DependentUpon>202103020629511_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103020703060_total.resx">
+      <DependentUpon>202103020703060_total.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -60,10 +60,11 @@ namespace reFactorPrj.Controllers
             if (ModelState.IsValid)
             {
                 var user = db.tMembers.FirstOrDefault(s => s.fM_Email == login.fM_Email && s.fM_Password == login.fM_Password);
+               
 
-                if(user != null)
+                if (user != null)
                 {
-                    Session["isLogin"] = user;
+                    Session["isLogin"] = user.fM_Id;
                     TempData["SuccesedLogin"] = "登入成功";
                     return RedirectToAction("Index", "Home");
                 }

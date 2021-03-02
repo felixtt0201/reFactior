@@ -17,7 +17,26 @@ namespace reFactorPrj.Controllers
         // GET: Carts
         public ActionResult Index()
         {
-            return View(db.tRecipe.ToList());
+            List<int> RecipeIdList = (List<int>)Session["RecipeIdList"];
+            List<tRecipe> List = new List<tRecipe>();
+            var tRecipeDetail = db.tRecipeDetail;
+            var tIngredients = db.tIngredients;
+            var tRecipe = db.tRecipe;
+            decimal total = 0;
+            foreach (var id in RecipeIdList)
+            {
+                var dos = tRecipeDetail.Where(x => x.fR_Id == id);
+                foreach (var item in dos)
+                {
+                    var r = tIngredients.FirstOrDefault(x => x.fRD_Ingredients == item.Name);
+                    total += r.fI_Price * item.fRD_Dos;
+                }
+
+                var result = tRecipe.Find(id);
+                List.Add(result);
+            }
+            ViewBag.Total = total;
+            return View(List);
         }
 
         // GET: Carts/Details/5
