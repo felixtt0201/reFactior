@@ -1,0 +1,161 @@
+﻿@model PagedList<reFactorPrj.Models.tRecipe>
+
+<style>
+    .mySearch .row {
+        margin-bottom: 0px;
+        margin-top: 20px;
+    }
+
+    .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .pagination > span, .pagination > a{
+        padding:10px;
+        font-size:18px;
+    }
+    .pagination > span:hover, .pagination > a:hover{
+        border-radius:5px;
+        background-color:#eee;
+    }
+
+    .tags-padding {
+        padding-left: 56px;
+        padding-right: 10px;
+    }
+
+    .card-image img {
+        transform: scale(1, 1);
+        transition: all 1s ease-out;
+        object-fit: cover;
+    }
+
+        .card-image img:hover {
+            transform: scale(1.2, 1.2);
+        }
+
+    .card {
+        transition: all 0.5s;
+    }
+
+        .card:hover {
+            transform: translateY(-10px);
+            transition: all 0.5s;
+        }
+
+    /*愛心*/
+    .heart {
+        position: absolute;
+        right: 0px;
+        margin-right: 10px;
+        color: orangered;
+        z-index: 20;
+    }
+    .searchbox {
+        box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+        margin-bottom: 20px;
+    }
+
+    .mt-2{
+        margin-top:20px
+    }
+
+</style>
+
+@*<link href="~/Content/PagedList.css" rel="stylesheet" />*@
+
+
+
+<div class="container mySearch">
+    <h4 class="center-align">食譜</h4>
+    <div class="row">
+        <div class="col s12">
+            <div class="input-field col s12">
+                @using (Html.BeginForm("Search", "Recipes"))
+                {
+                    <div class="searchbox">
+                        <div class="file-path-wrapper">
+                            <input type="text" name="searchMenu" value="" placeholder="請輸入要查詢的食譜，EX:白醬..." />
+                        </div>
+                        <div class="center-align mt-2">
+                            <button class="waves-effect waves-light btn" type="submit">搜尋</button>         
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--card-->
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            string photo = "";
+            if (Model != null)
+            {
+                photo = item.fR_Menu.ToString() + ".jpg";
+            }
+
+            <div class="col s12 l4">
+                <div class="card hoverable">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <a href="@Url.Action("Details","Recipes")?id=@item.fR_Id">
+                            <img class="activator"
+                                 src="~/images/foodpic/@photo" width="400" height="300" />
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            @Html.DisplayFor(modelItem => item.fR_Menu)
+                        </span>
+                        <p>
+                            <a href="@Url.Action("Details","Recipes")?id=@item.fR_Id">查看完整資訊</a>
+                            @if (Session["Member"] == null)
+                            {
+
+                                <a OnClick="return confirm("&#39;請先登入會員&#39;")" href="@Url.Action("Login","Members")" class="tooltipped heart" data-tooltip="加入我的最愛">
+                                    <i class="small material-icons heart">favorite</i>
+                                </a>
+
+                            }
+                            else
+                            {
+                                <a OnClick="return confirm("&#39;成功加入我的最愛&#39;")" href="@Url.Action("MyFavorite","Home")?pid=@item.fR_Id" class="tooltipped heart" data-tooltip="加入我的最愛">
+                                    <i class="small material-icons heart">favorite</i>
+                                </a>
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="center-align pagination">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+    </div>
+</div>
+
+@if (TempData["message"] != null)
+{
+<script>
+    alert("查無資料")
+</script>
+}
+
+<script>
+        (function ($) {
+            $(function () {
+                $('.parallax').parallax();
+
+                //愛心提示訊息
+                $('.tooltipped').tooltip();
+
+                //有用到jQuery的功能就寫在這
+            }); // end of document ready
+        })(jQuery); // end of jQuery name space
+</script>
+

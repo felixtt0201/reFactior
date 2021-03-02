@@ -1,0 +1,131 @@
+﻿@model reFactorPrj.Models.Login
+
+<style>
+    .login_container {
+        margin: 0 auto;
+        background: white;
+        padding: 20px 25px;
+        height: auto;
+        box-sizing: border-box;
+        box-shadow: 12px 12px 7px rgba(0, 0, 0, 0.4);
+        position: relative;
+        max-width: 1280px;
+        width: 50%;
+        margin-bottom: 80px;
+        margin-top: 70px;
+    }
+
+    @@media only screen and (min-width: 601px) {
+        .login_container {
+            width: 40%;
+        }
+    }
+
+    @@media only screen and (min-width: 993px) {
+        .login_container {
+            width: 45%;
+        }
+    }
+
+    .col.s6 > .btn {
+        width: 100%;
+    }
+
+    .gender-male,
+    .gender-female {
+        display: inline-block;
+    }
+
+    .gender-female {
+        margin-left: 35px;
+    }
+
+    radio:required {
+        border-color: red;
+    }
+
+    .login_container {
+        animation: showUp 0.5s cubic-bezier(0.18, 1.3, 1, 1) forwards;
+    }
+
+    @@keyframes showUp {
+        0% {
+            transform: scale(0);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .ngl {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+    }
+
+    #sex {
+        margin-bottom: 50px;
+    }
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        background-image: url(../../images/background.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .contact {
+        width: 20px;
+        height: 20px;
+    }
+
+    .text-danger {
+        color: red;
+    }
+</style>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="login_container">
+        <h4 class="center-align">會員登入</h4>
+        <div class="row">
+            @*帳號*@
+            <div class="input-field col s12">
+                <label for="name"> @Html.LabelFor(model => model.fM_Email, htmlAttributes: new { @class = "control-label col-md-2" })：</label>
+                @Html.EditorFor(model => model.fM_Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fM_Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            @*密碼*@
+            <div class="input-field col s12">
+                <label for="name">@Html.LabelFor(model => model.fM_Password, htmlAttributes: new { @class = "control-label col-md-2" })：</label>
+                @Html.EditorFor(model => model.fM_Password, new { htmlAttributes = new { @class = "validate" } })
+
+                @Html.ValidationMessageFor(model => model.fM_Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col s6">
+            <button class="btn waves-effect waves-light"
+                    type="submit"
+                    name="action">
+                登入
+            </button>
+            <p style="text-align:center"> @Html.ActionLink("我不是會員，想快速註冊", "Create", "Members")</p>
+        </div>
+    </div>
+}
+@if (TempData["SuccesedMessage"] != null)
+{
+    <script>
+    alert("@TempData["SuccesedMessage"]");
+    </script>
+}

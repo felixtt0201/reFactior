@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
+    <link href="~/Content/materialize.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <link href="~/Content/template.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/materialize.min.js"></script>
+    <link rel="SHORTCUT ICON" href="~/favicon.ico" />
+    <style>
+        .dropdown-content li > a, .dropdown-content li > span {
+            color: #0e0d0d;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="navbar-fixed">
+            <nav class="white" role="navigation">
+                <div class="nav-wrapper container">
+                    <a href="/" class="brand-logo">
+                        <img src="~/images/_logo1.png" alt="logo" />
+                    </a>
+                    <ul class="right hide-on-med-and-down">
+                        <li>@Html.ActionLink("首頁", "Index", "Home")</li>
+                        <li>@Html.ActionLink("食譜", "Index", "Recipes")</li>
+                        <li>@Html.ActionLink("購物車", "Cart", "Cart")</li>
+                        <li>@Html.ActionLink("註冊", "Create", "Members")</li>
+                        <li>@Html.ActionLink("登入", "Login", "Members")</li>
+
+
+                        <!-- 全頁面的會員下拉 Trigger -->
+                        @*<li>
+                                <a class="dropdown-trigger" href="#!" data-target="dropdown2">會員<i class="material-icons right">arrow_drop_down</i></a>
+                            </li>*@
+                    </ul>
+                    <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                </div>
+            </nav>
+        </div>
+        <ul id="nav-mobile" class="sidenav">
+            <li>@Html.ActionLink("首頁", "Index", "Home")</li>
+            <li>@Html.ActionLink("食譜", "Index", "Recipes")</li>
+            <li>@Html.ActionLink("購物車", "Cart", "Cart")</li>
+            <li>@Html.ActionLink("登入", "Login", "Members")</li>
+            <li>@Html.ActionLink("註冊", "Create", "Members")</li>
+
+            <!-- 手機的會員下拉 Trigger -->
+            @*<li>
+                    <a class="dropdown-trigger" href="#!" data-target="dropdown1">會員<i class="material-icons right">arrow_drop_down</i></a>
+                </li>*@
+        </ul>
+        <div>
+            @RenderBody()
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="info">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 l4">
+                        <h6>關於南方食健客</h6>
+                        <p class="text-justify"></p>
+                    </div>
+
+                    <div class="col s12 l4">
+                        <h6>分類</h6>
+                        <ul class="footer-links">
+                            <li><a href="#!">網站導覽</a></li>
+                            <li><a href="#!">團隊介紹</a></li>
+                            <li><a href="#!">常見問題</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col s12 l4">
+                        <h6>聯絡我們</h6>
+                        <ul class="social-icons">
+                            <li>
+                                <a class="facebook" href="#">
+                                    <i class="fa fa-facebook">
+                                        <img class="contact" style="margin-top:10px"
+                                             src="~/images/facebook.png"
+                                             alt="facebook" />
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="instagram" href="#">
+                                    <i class="fa fa-twitter">
+                                        <img class="contact" style="margin-top:10px"
+                                             src="~/images/instagram-sketched.png"
+                                             alt="instagram" />
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="email" href="#">
+                                    <i class="fa fa-email">
+                                        <img class="contact" style="margin-top:10px"
+                                             src="~/images/email.png"
+                                             alt="email" />
+                                    </i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 l12">
+                        <p class="copyright-text">
+                            Copyright &copy; 2020 All Rights Reserved by
+                            <a href="#">Southern Food Health Team</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function ($) {
+            $(function () {
+                $(".sidenav").sidenav();
+                $(".dropdown-trigger").dropdown();
+                $('.parallax').parallax();
+                //有用到jQuery的功能就寫在這
+            }); // end of document ready
+        })(jQuery); // end of jQuery name space
+    </script>
+</body>
+</html>

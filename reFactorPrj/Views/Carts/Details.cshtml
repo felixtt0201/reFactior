@@ -1,0 +1,58 @@
+﻿@model reFactorPrj.Models.tRecipe
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tRecipe</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fR_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fR_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fRD_Serving)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fRD_Serving)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fR_Menu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fR_Menu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fR_Do)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fR_Do)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fR_Pic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fR_Pic)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.fR_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

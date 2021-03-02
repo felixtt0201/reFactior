@@ -1,0 +1,181 @@
+﻿@model reFactorPrj.Models.tMembers
+
+<style>
+    .register_container {
+        margin: 0 auto;
+        background: white;
+        padding: 20px 25px;
+        height: auto;
+        box-sizing: border-box;
+        position: relative;
+        max-width: 1280px;
+        width: 50%;
+        margin-bottom: 80px;
+        margin-top:70px;
+        margin-top:70px;
+        box-shadow: 12px 12px 7px rgba(0, 0, 0, 0.4);
+    }
+
+    select{
+        display:block;
+    }
+
+    @@media only screen and (min-width: 601px) {
+        .register_container {
+            width: 40%;
+        }
+    }
+
+    @@media only screen and (min-width: 993px) {
+        .register_container {
+            width: 45%;
+        }
+    }
+
+    .col.s6 > .btn {
+        width: 100%;
+    }
+
+    .gender-male,
+    .gender-female {
+        display: inline-block;
+    }
+
+    .gender-female {
+        margin-left: 35px;
+    }
+
+    radio:required {
+        border-color: red;
+    }
+
+    .register_container {
+        animation: showUp 0.5s cubic-bezier(0.18, 1.3, 1, 1) forwards;
+    }
+
+    @@keyframes showUp {
+        0% {
+            transform: scale(0);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .row {
+        margin-bottom: 20px;
+    }
+
+    .ngl {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+    }
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        background-image: url(../../images/background.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .contact {
+        width: 20px;
+        height: 20px;
+    }
+
+    label {
+        font-size: .8rem;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+            <div class="register_container">
+                <h4 class="center-align">註冊</h4>
+                <div class="row">
+                    <form class="col s12" id="reg-form">
+                        @*姓名*@
+                        <div>
+                            <div class="input-field col s12">
+                                @Html.EditorFor(model => model.fM_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                <label for="name"> @Html.LabelFor(model => model.fM_Name, htmlAttributes: new { @class = "control-label col-md-2" })：</label>
+                                @Html.ValidationMessageFor(model => model.fM_Name, "", new { @class = "text-danger red-text accent-4" })
+                            </div>
+                        </div>
+                        @*-------------------智聖 7/15---------------------------------------------------------------*@
+                        @*性別*@
+                        <div>
+                            <div class="col s4">
+                                @Html.LabelFor(model => model.fM_Gender)：
+                            </div>
+                            <div class="col-md-10">
+                                @Html.EnumDropDownListFor(model => model.fM_Gender, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.fM_Gender, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.fM_Gender, "", new { @class = "text-danger red-text accent-4" })
+
+                        @*電話*@
+                        <div>
+                            <div class="input-field col s12">
+                                @Html.EditorFor(model => model.fM_Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                <label for="phone"> @Html.LabelFor(model => model.fM_Phone, htmlAttributes: new { @class = "control-label col-md-2" })：</label>
+                                @Html.ValidationMessageFor(model => model.fM_Phone, "", new { @class = "text-danger red-text accent-4" })
+                            </div>
+                        </div>
+                        @*EMAIL*@
+                        <div class="col s9" style="color:hotpink">
+                            @ViewBag.Message
+                        </div>
+                        <div>
+                            <div class="input-field col s12">
+                                @Html.EditorFor(model => model.fM_Email, new { htmlAttributes = new { @class = "form-control" } })
+                                <label for="email"> @Html.LabelFor(model => model.fM_Email, htmlAttributes: new { @class = "control-label col-md-2" })：</label>
+                                @Html.ValidationMessageFor(model => model.fM_Email, "", new { @class = "text-danger red-text accent-4" })
+                            </div>
+                        </div>
+                        @*地址*@
+                        <div>
+                            <div class="input-field col s12">
+                                @Html.EditorFor(model => model.fM_Address, new { htmlAttributes = new { @class = "form-control" } })
+                                <label for="address">  @Html.LabelFor(model => model.fM_Address, htmlAttributes: new { @class = "control-label col-md-2" })：</label>
+                                @Html.ValidationMessageFor(model => model.fM_Address, "", new { @class = "text-danger red-text accent-4" })
+                            </div>
+                        </div>
+                        @*密碼*@
+                        <div>
+                            <div class="input-field col s12">
+                                @Html.EditorFor(model => model.fM_Password, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                                <label for="password">  @Html.LabelFor(model => model.fM_Password, htmlAttributes: new { @class = "control-label col-md-2" })：</label>
+                                @Html.ValidationMessageFor(model => model.fM_Password, "", new { @class = "text-danger red-text accent-4" })
+                            </div>
+                        </div>
+                        @*<div class="col s9">
+
+            <label>
+                    <input type="checkbox" class="filled-in" checked="checked" />
+                    <span>同意《會員條款與隱私政策》</span>
+                </label>
+        </div>*@
+                        <div>
+                            <div class="right-align">
+                                <button class="btn waves-effect waves-light" type="submit" name="action">
+                                    註冊
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+}
+

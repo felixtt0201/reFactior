@@ -1,0 +1,209 @@
+﻿@model IEnumerable<reFactorPrj.Models.tRecipe>
+
+<style>
+    .parallax-container {
+        min-height: 380px;
+        line-height: 0;
+        height: auto;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+        .parallax-container .section {
+            width: 100%;
+        }
+
+    .card-image img {
+        transform: scale(1, 1);
+        transition: all 1s ease-out;
+        object-fit: cover;
+    }
+
+        .card-image img:hover {
+            transform: scale(1.2, 1.2);
+        }
+
+    .card {
+        transition: all 0.5s;
+    }
+
+        .card:hover {
+            transform: translateY(-10px);
+            transition: all 0.5s;
+        }
+
+    /*愛心*/
+    .heart {
+        position: absolute;
+        right: 0px;
+        margin-right: 10px;
+        color: orangered;
+        z-index: 20;
+    }
+</style>
+
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <h1 class="header center">南方食健客</h1>
+            <div class="row center">
+                <h5 class="header grey-text text-lighten-2">
+                    時尚健康。食尚典範
+                </h5>
+                <h1></h1>
+                <h1></h1>
+            </div>
+            <div class="row center">
+                <a href="~/Home/Search"
+                   id="download-button"
+                   class="btn-large waves-effect waves-light brown">Get Started</a>
+            </div>
+            <br /><br />
+        </div>
+    </div>
+    <div class="parallax">
+        <img src="~/images/food.jpg" alt="Unsplashed background img 1" />
+    </div>
+</div>
+
+<div class="container">
+    <div class="section">
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text">
+                        <i class="material-icons">flash_on</i>
+                    </h2>
+                    <h5 class="center">養生健康，從食材選起</h5>
+                    <p class="light">
+                        參考食材 : 由各區農業試驗所及農業改良場專家提供食材專業介紹，
+                        提供正確的飲食資訊可以讓我們身體得到充足的營養，
+                        減少生病的機會。
+                    </p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text">
+                        <i class="material-icons">restaurant_menu</i>
+                    </h2>
+                    <h5 class="center">想輕鬆煮出五星級飯店的料理嗎 ?</h5>
+                    <p class="light">
+                        提供各式頂級專業食材，
+                        讓您不用出門即可吃遍全世界!!
+                        立即下訂，食材輕鬆到家。
+                    </p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text">
+                        <i class="material-icons">shopping_cart</i>
+                    </h2>
+                    <h5 class="center">工作繁忙而無法購買食材 ?</h5>
+                    <p class="light">
+                        提供簡潔便利的清單功能，
+                        讓您在挑選時能依照需求省去採購的時間，
+                        不用再因購買不到食材而煩惱。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="row center">
+                <h4 class="header col s12">健康與美味在此相遇</h4>
+            </div>
+        </div>
+    </div>
+    <div class="parallax">
+        <img src="~/images/foodb2.jpg" alt="Unsplashed background img 2" />
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12 center">
+                <h3><i class="mdi-content-send brown-text"></i></h3>
+                <h3>熱門推薦食譜</h3>
+                <h5 class="center light">人氣食譜</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            string photo = "";
+            if (Model != null)
+            {
+                photo = item.fR_Menu.ToString() + ".jpg";
+            }
+
+            <div class="col s12 l4">
+                <div class="card hoverable">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <a href="@Url.Action("Details","Recipes")?id=@item.fR_Id">
+                            <img class="activator"
+                                 src="~/images/foodpic/@photo" width="400" height="300" />
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            @Html.DisplayFor(modelItem => item.fR_Menu)
+                        </span>
+                        <p>
+                            <a href="@Url.Action("Details","Recipes")?id=@item.fR_Id">查看完整資訊</a>
+                            @if (Session["Member"] == null)
+                            {
+                                <a OnClick="return confirm(" &#39;請先登入會員&#39;")" href="@Url.Action("Login","Members")" class="tooltipped heart" data-tooltip="加入我的最愛">
+                                    <i class="small material-icons heart">favorite</i>
+                                </a>
+                            }
+                            else
+                            {
+                                <a OnClick="return confirm(" &#39;成功加入我的最愛&#39;")" href="@Url.Action("MyFavorite","Home")?pid=@item.fR_Id" class="tooltipped heart" data-tooltip="加入我的最愛">
+                                    <i class="small material-icons heart">favorite</i>
+                                </a>
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@if (TempData["SuccesedLogin"] != null)
+{
+    <script>
+    alert("@TempData["SuccesedLogin"]");
+    </script>
+}
+
+<script>
+    (function ($) {
+        $(function () {
+            $('.parallax').parallax();
+
+            //愛心提示訊息
+            $('.tooltipped').tooltip();
+
+            //有用到jQuery的功能就寫在這
+        }); // end of document ready
+    })(jQuery); // end of jQuery name space
+</script>
+
+
+
+
