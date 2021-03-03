@@ -52,65 +52,65 @@
                 @Html.ActionLink("Details", "Details", new { id = item.fR_Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.fR_Id })
             </td>
-            <td>@ViewBag.Total</td>
         </tr>
     }
 </table>
 
-@*<style>
-        .cart_go_pay {
-            width: 100%;
-            display: block;
-            margin-top: 20px;
-        }
+<style>
+    .cart_go_pay {
+        width: 100%;
+        display: block;
+        margin-top: 20px;
+    }
 
-        .card.small {
-            max-width: 400px;
-            height: 300px;
-        }
+    .card.small {
+        max-width: 400px;
+        height: 300px;
+    }
 
-        .button1 {
-            margin-left: 15px;
-        }
+    .button1 {
+        margin-left: 15px;
+    }
 
-        .button2 {
-            margin-right: 15px;
-        }
+    .button2 {
+        margin-right: 15px;
+    }
 
-        .qty {
-            padding-left: 50px;
-        }
+    .qty {
+        padding-left: 50px;
+    }
 
-        .activator {
-            object-fit: cover;
-        }
-    </style>
+    .activator {
+        object-fit: cover;
+    }
+</style>
 
-    <div class="container">
-        <h3>購物車</h3>
-        <div class="row">
-            <div class="col s4 l4">
-                食譜
-            </div>
-            <div class="col s4 l4 push-l3">食材</div>
-            <div class="col s4 l4 push-l2">小計</div>
+<div class="container">
+    <h3>購物車</h3>
+    <div class="row">
+        <div class="col s4 l4">
+            食譜
         </div>
-        @{decimal totalCount = 0; }
-        @foreach (var i in Model)
+        <div class="col s4 l4 push-l3">食材</div>
+        <div class="col s4 l4 push-l2">小計</div>
+    </div>
+    @{decimal totalCount = 0; }
+    @foreach (var i in Model)
+    {
+        using (Html.BeginForm("Update", "Cart"))
         {
-            using (Html.BeginForm("Update", "Cart"))
-            {
-                string photo = i.fR_Menu + ".jpg";
-                //decimal total = i.list食材明細.Where(x => x.fisChecked == true).Sum(x => x.f食材單價 * x.f食材份數);
-                //totalCount += total;
-                //string totalstr = total + "元";
-                <hr>
-                <div class="row">
-                    <div class="col s12 l3">
-                        <h5>@i.fR_Menu</h5>
-                        <img class="activator z-depth-3" src="~/images/foodpic/@photo" width="300" height="300">
-                    </div>
-                    <div class="col s12 l3 push-l4">
+            string photo = i.fR_Menu + ".jpg";
+            //decimal total = i.list食材明細.Where(x => x.fisChecked == true).Sum(x => x.f食材單價 * x.f食材份數);
+            //totalCount += total;
+            //string totalstr = total + "元";
+            totalCount += Convert.ToInt32(i.fR_Pic);
+            <hr>
+            <div class="row">
+                <div class="col s12 l3">
+                    <h5>@i.fR_Menu</h5>
+                    <img class="activator z-depth-3" src="~/images/foodpic/@photo" width="300" height="300">
+                </div>
+                @*<div class="col s12 l3 push-l4">
                         <button class="btn waves-effect waves-light modal-trigger" type="button" name="action" data-target="@i.fR_Id">食材顯示</button>
                         <div id="@i.fR_Id" class="modal">
                             <div class="modal-content">
@@ -171,106 +171,106 @@
                                 <button class="btn waves-effect waves-light select-all" type="button" style="float:left; margin-left:10px; margin-bottom: 20px;">全選</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="col s12 l3 push-l4">@i.fR_Pic</div>
-                    <div class="col s12 l3 push-l2">
-                        <a class="waves-effect waves-light btn-small" href="@Url.Action("DelCart")?id=@i.fR_Id" OnClick="return confirm('確定要移除?')">刪除</a>
-                    </div>
+                    </div>*@
+                <div class="col s12 l3 push-l4">@i.fR_Pic</div>
+                <div class="col s12 l3 push-l2">
+                    <a class="waves-effect waves-light btn-small" href="@Url.Action("DelCart")?id=@i.fR_Id" OnClick="return confirm('確定要移除?')">刪除</a>
                 </div>
-            }
-        }
-        @{ string totalCountStr = "金額總計:" + totalCount + "元";}
-        <hr>
-        <div class="row">
-            <h5 class="right-align">@totalCountStr</h5>
-            <div class="cart_go_pay right-align">
-                <button class="btn waves-effect waves-light mr-4" type="submit" name="action" onclick="location.href='@Url.Action("Search","Recipes")'">
-                    繼續購物
-
-                    <i class="material-icons left">add_shopping_cart</i>
-                </button>
-
-                <button class="btn waves-effect waves-light" type="submit" name="action" onclick="location.href='@Url.Action("showOrderDetail", "Home")?fO_Id=@ViewBag.訂單ID'">
-                    前往結帳
-                    <i class="material-icons left">attach_money</i>
-                </button>
             </div>
+        }
+    }
+    @*@{ string totalCountStr = "金額總計:" + totalCount + "元";}*@
+    <hr>
+    <div class="row">
+        <h5 class="right-align">金額總計: @totalCount 元</h5>
+        <div class="cart_go_pay right-align">
+            <button class="btn waves-effect waves-light mr-4" type="submit" name="action" onclick="location.href='@Url.Action("Search","Recipes")'">
+                繼續購物
+
+                <i class="material-icons left">add_shopping_cart</i>
+            </button>
+
+            <button class="btn waves-effect waves-light" type="submit" name="action" onclick="location.href='@Url.Action("showOrderDetail", "Home")?fO_Id=@ViewBag.訂單ID'">
+                前往結帳
+                <i class="material-icons left">attach_money</i>
+            </button>
         </div>
     </div>
+</div>
 
-    <script>
-        (function ($) {
-            $(function () {
-                $(".sidenav").sidenav();
-                $(".dropdown-trigger").dropdown();
-                $('.modal').modal();
-                //有用到jQuery的功能就寫在這
-            }); // end of document ready
-        })(jQuery); // end of jQuery name space
-    </script>
-    <script>
-        $('.button2').attr('disabled', true);
-        //畫面載入就要先做判斷
+<script>
+    (function ($) {
+        $(function () {
+            $(".sidenav").sidenav();
+            $(".dropdown-trigger").dropdown();
+            $('.modal').modal();
+            //有用到jQuery的功能就寫在這
+        }); // end of document ready
+    })(jQuery); // end of jQuery name space
+</script>
+<script>
+    $('.button2').attr('disabled', true);
+    //畫面載入就要先做判斷
 
-        $('.amount').each(function () {
-            var t = $(this).find('input');
-            if (parseInt(t.val()) == 1) {
-                $(this).parent().find('.button2').attr('disabled', true);
-            }
-            else {
-                $(this).parent().find('.button2').attr('disabled', false);
-            };
-        })
-        //數量增加操作
-        $(".button1").click(function () {
-            //給獲取的val加上絕對值，避免出現負數
-            //使用者直接輸入0還會有bug
-            var t = $(this).parent().find('input');
-            var p = $(this).parent().parent().find('.price');
-            t.val(Math.abs(parseInt(t.val())) + 1);
-            if (parseInt(t.val()) != 1) {
-                $(this).parent().find('.button2').attr('disabled', false);
-            };
-            //如果checkbox有勾選
-            if ($(this).parent().parent().find(':checkbox').prop('checked')) {
-                var total = parseInt(t.val()) * parseInt(p.html());
-                $(this).parent().parent().find('.total').html(total);
-            }
-        })
-        //數量減少操作
-        $(".button2").click(function () {
-            var t = $(this).parent().find('input');
-            var p = $(this).parent().parent().find('.price');
-            t.val(Math.abs(parseInt(t.val())) - 1);
-            if (parseInt(t.val()) == 1) {
-                $(this).parent().find('.button2').attr('disabled', true);
-            };
-            //如果checkbox有勾選
-            if ($(this).parent().parent().find(':checkbox').prop('checked')) {
-                var total = parseInt(t.val()) * parseInt(p.html());
-                $(this).parent().parent().find('.total').html(total);
-            }
-        })
+    $('.amount').each(function () {
+        var t = $(this).find('input');
+        if (parseInt(t.val()) == 1) {
+            $(this).parent().find('.button2').attr('disabled', true);
+        }
+        else {
+            $(this).parent().find('.button2').attr('disabled', false);
+        };
+    })
+    //數量增加操作
+    $(".button1").click(function () {
+        //給獲取的val加上絕對值，避免出現負數
+        //使用者直接輸入0還會有bug
+        var t = $(this).parent().find('input');
+        var p = $(this).parent().parent().find('.price');
+        t.val(Math.abs(parseInt(t.val())) + 1);
+        if (parseInt(t.val()) != 1) {
+            $(this).parent().find('.button2').attr('disabled', false);
+        };
+        //如果checkbox有勾選
+        if ($(this).parent().parent().find(':checkbox').prop('checked')) {
+            var total = parseInt(t.val()) * parseInt(p.html());
+            $(this).parent().parent().find('.total').html(total);
+        }
+    })
+    //數量減少操作
+    $(".button2").click(function () {
+        var t = $(this).parent().find('input');
+        var p = $(this).parent().parent().find('.price');
+        t.val(Math.abs(parseInt(t.val())) - 1);
+        if (parseInt(t.val()) == 1) {
+            $(this).parent().find('.button2').attr('disabled', true);
+        };
+        //如果checkbox有勾選
+        if ($(this).parent().parent().find(':checkbox').prop('checked')) {
+            var total = parseInt(t.val()) * parseInt(p.html());
+            $(this).parent().parent().find('.total').html(total);
+        }
+    })
 
-        //全選
-        $(".select-all").click(function () {
-            $(this).parent().parent().find(':checkbox').prop('checked', !$(':checkbox').prop('checked'));
-        });
+    //全選
+    $(".select-all").click(function () {
+        $(this).parent().parent().find(':checkbox').prop('checked', !$(':checkbox').prop('checked'));
+    });
 
-        //checkbox沒選 小計為0
-        $(":checkbox").change(function () {
-            if (this.checked) {
-                //計算小計
-                var p4 = $(this).parent().parent().parent().parent();
-                var t = p4.find('.amount').find('input');
-                var p = p4.find('.price');
-                t.val(Math.abs(parseInt(t.val())));
-                var total = parseInt(t.val()) * parseInt(p.html());
-                p4.find('.total').html(total);
-            }
-            else {
-                //小計為0
-                $(this).parent().parent().parent().parent().find('.total').html(0);
-            }
-        });
-    </script>*@
+    //checkbox沒選 小計為0
+    $(":checkbox").change(function () {
+        if (this.checked) {
+            //計算小計
+            var p4 = $(this).parent().parent().parent().parent();
+            var t = p4.find('.amount').find('input');
+            var p = p4.find('.price');
+            t.val(Math.abs(parseInt(t.val())));
+            var total = parseInt(t.val()) * parseInt(p.html());
+            p4.find('.total').html(total);
+        }
+        else {
+            //小計為0
+            $(this).parent().parent().parent().parent().find('.total').html(0);
+        }
+    });
+</script>

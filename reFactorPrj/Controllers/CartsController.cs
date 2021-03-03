@@ -33,6 +33,7 @@ namespace reFactorPrj.Controllers
                 }
 
                 var result = tRecipe.Find(id);
+                result.fR_Pic = total.ToString();
                 List.Add(result);
             }
             ViewBag.Total = total;
