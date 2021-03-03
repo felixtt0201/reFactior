@@ -36,7 +36,7 @@ namespace reFactorPrj.Controllers
                 result.fR_Pic = total.ToString();
                 List.Add(result);
             }
-            ViewBag.Total = total;
+
             return View(List);
         }
 
