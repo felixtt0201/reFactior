@@ -21,10 +21,10 @@ namespace reFactorPrj.Models
         [StringLength(5)]
         public string fRD_Unit { get; set; }
 
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         public int? fR_Id { get; set; }
 
-        public int Total { get; set; }
+        public decimal Total { get; set; }
 
         [ForeignKey("fR_Id")]
         public virtual tRecipe tRecipe { get; set; }

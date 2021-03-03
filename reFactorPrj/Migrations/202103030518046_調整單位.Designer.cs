@@ -7,13 +7,13 @@ namespace reFactorPrj.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class test : IMigrationMetadata
+    public sealed partial class 調整單位 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(test));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(調整單位));
         
         string IMigrationMetadata.Id
         {
-            get { return "202103020629511_test"; }
+            get { return "202103030518046_調整單位"; }
         }
         
         string IMigrationMetadata.Source

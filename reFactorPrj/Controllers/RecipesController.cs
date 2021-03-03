@@ -22,9 +22,8 @@ namespace reFactorPrj.Controllers
         public ActionResult Index(int Page = 0)
         {
             Page = Page - 1 > 0 ? Page - 1 : 0;
-            return View(db.tRecipe.OrderByDescending(m => m.fR_Id).ToList().ToPagedList(Page, PageSize));
 
-            //return View(db.tRecipe.OrderBy(x => Guid.NewGuid()).ToList());
+            return View(db.tRecipe.OrderByDescending(m => m.fR_Id).ToList().ToPagedList(Page, PageSize));
         }
 
         // 搜尋食譜

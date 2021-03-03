@@ -13,7 +13,7 @@ namespace reFactorPrj.Models
         public tRecipe()
         {
             fRD_Serving = 1;
-            fR_Pic = "1";
+            fR_Pic = 1;
         }
 
         [Key]
@@ -29,7 +29,7 @@ namespace reFactorPrj.Models
 
         public string fR_Do { get; set; }
 
-        public string fR_Pic { get; set; }
+        public decimal fR_Pic { get; set; }
 
         // 一對多關聯
         public virtual ICollection<tRecipeDetail> tRecipeDetail { get; set; }

@@ -1,61 +1,5 @@
 ﻿@model IEnumerable<reFactorPrj.Models.tRecipe>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.fR_Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fRD_Serving)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fR_Menu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fR_Do)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fR_Pic)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.fR_Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fRD_Serving)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fR_Menu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fR_Do)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fR_Pic)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.fR_Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.fR_Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.fR_Id })
-            </td>
-        </tr>
-    }
-</table>
-
 <style>
     .cart_go_pay {
         width: 100%;
@@ -94,97 +38,77 @@
         <div class="col s4 l4 push-l3">食材</div>
         <div class="col s4 l4 push-l2">小計</div>
     </div>
-    @{decimal totalCount = 0; }
+    @{decimal total = 0;}
     @foreach (var i in Model)
     {
+        total += i.fR_Pic;
         using (Html.BeginForm("Update", "Cart"))
         {
             string photo = i.fR_Menu + ".jpg";
-            //decimal total = i.list食材明細.Where(x => x.fisChecked == true).Sum(x => x.f食材單價 * x.f食材份數);
-            //totalCount += total;
-            //string totalstr = total + "元";
-            totalCount += Convert.ToInt32(i.fR_Pic);
             <hr>
             <div class="row">
                 <div class="col s12 l3">
                     <h5>@i.fR_Menu</h5>
                     <img class="activator z-depth-3" src="~/images/foodpic/@photo" width="300" height="300">
                 </div>
-                @*<div class="col s12 l3 push-l4">
-                        <button class="btn waves-effect waves-light modal-trigger" type="button" name="action" data-target="@i.fR_Id">食材顯示</button>
-                        <div id="@i.fR_Id" class="modal">
-                            <div class="modal-content">
-                                <h4>@i.fR_Menu</h4>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>食材名稱</th>
-                                            <th>數量</th>
-                                            <th>單位</th>
-                                            <th class="qty">份數</th>
-                                            <th>價格</th>
-                                            <th>小計</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var j in i.list食材明細)
-                                        {
-                                            if (j.fisChecked == true)
-                                            {
-                                                小計 = @j.f食材單價 * @j.f食材份數;
-                                            }
-                                            else
-                                            {
-                                                小計 = 0;
-                                            }
-                                            <tr id=@j.f項次編號>
-                                                <td>
-                                                    <p>
-                                                        <label>
-                                                            @{ if (j.fisChecked == true)
-                                                                {
-                                                                    <input name="isChecked" id="@j.f項次編號" type="checkbox" checked="checked" value="@j.f項次編號" />
-                                                                }
-                                                                else
-                                                                {
-                                                                    <input name="isChecked" id="@j.f項次編號" type="checkbox" value="@j.f項次編號" />
-                                                                }
-                                                            }
-                                                            <span>@j.f食材名稱</span>
-                                                        </label>
-                                                    </p>
-                                                </td>
-                                                <td>@j.f食材用量</td>
-                                                <td>@j.f食材單位</td>
-                                                <td class="amount"><button class="button2" id="min" type="button"><i class=" tiny material-icons">remove</i></button><input id="@j.f項次編號" name="f份數" type="text" value=@j.f食材份數 style="width:30px;text-align: center" /><button class="button1" type="button"><i class="tiny material-icons">add</i></button></td>
-                                                <td class="price">@j.f食材單價</td>
-                                                <td class="total">@小計</td>
-                                                <td style="display:none;"><input type="hidden" id="@j.f項次編號" name="fId" value=@j.f項次編號></td>
-                                            </tr>
+                <div class="col s12 l3 push-l4">
+                    <button class="btn waves-effect waves-light modal-trigger" type="button" name="action" data-target="@i.fR_Id">食材顯示</button>
 
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn waves-effect waves-light" type="submit" name="action">確認</button>
-                                <button class="btn waves-effect waves-light select-all" type="button" style="float:left; margin-left:10px; margin-bottom: 20px;">全選</button>
-                            </div>
+                    <div id="@i.fR_Id" class="modal">
+                        <div class="modal-content">
+                            <h4>@i.fR_Menu</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>食材名稱</th>
+                                        <th>數量</th>
+                                        <th>單位</th>
+                                        <th class="qty">份數</th>
+                                        <th>價格</th>
+                                        <th>小計</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var j in i.tRecipeDetail)
+                                    {
+                                        <tr id=@j.fRD_Id>
+                                            <td>
+                                                <p>
+                                                    <label>
+                                                        <span>@j.Name</span>
+                                                    </label>
+                                                </p>
+                                            </td>
+                                            <td>@j.fRD_Dos</td>
+                                            <td>@j.fRD_Unit</td>
+                                            <td class="amount"><button class="button2" id="min" type="button"><i class=" tiny material-icons">remove</i></button><input id="" name="" type="text" value="" style="width:30px;text-align: center" /><button class="button1" type="button"><i class="tiny material-icons">add</i></button></td>
+                                            <td class="price">@j.Price</td>
+                                            <td class="total">@Math.Ceiling(j.Total)</td>
+                                            <td style="display:none;"><input type="hidden" id="" name="fId" value=""></td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
                         </div>
-                    </div>*@
-                <div class="col s12 l3 push-l4">@i.fR_Pic</div>
+                        <div class="modal-footer">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">確認</button>
+                            <button class="btn waves-effect waves-light select-all" type="button" style="float:left; margin-left:10px; margin-bottom: 20px;">全選</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 l3 push-l4">@Math.Ceiling(i.fR_Pic)</div>
                 <div class="col s12 l3 push-l2">
-                    <a class="waves-effect waves-light btn-small" href="@Url.Action("DelCart")?id=@i.fR_Id" OnClick="return confirm('確定要移除?')">刪除</a>
+                    <a class="waves-effect waves-light btn-small" href="@Url.Action("Delete")?Id=@i.fR_Id" OnClick="return confirm('確定要移除?')">刪除</a>
                 </div>
             </div>
         }
     }
-    @*@{ string totalCountStr = "金額總計:" + totalCount + "元";}*@
     <hr>
     <div class="row">
-        <h5 class="right-align">金額總計: @totalCount 元</h5>
+        <h5 class="right-align">金額總計:@Math.Ceiling(total) 元</h5>
         <div class="cart_go_pay right-align">
-            <button class="btn waves-effect waves-light mr-4" type="submit" name="action" onclick="location.href='@Url.Action("Search","Recipes")'">
+            <button class="btn waves-effect waves-light mr-4" type="submit" name="action" onclick="location.href='@Url.Action("Search", "Recipes")'">
                 繼續購物
 
                 <i class="material-icons left">add_shopping_cart</i>
@@ -194,6 +118,7 @@
                 前往結帳
                 <i class="material-icons left">attach_money</i>
             </button>
+            <input type="hidden" name="OrderTotal" value="@Math.Ceiling(total)" />
         </div>
     </div>
 </div>

@@ -11,14 +11,16 @@
         align-items: center;
         justify-content: center;
     }
-    .pagination > span, .pagination > a{
-        padding:10px;
-        font-size:18px;
-    }
-    .pagination > span:hover, .pagination > a:hover{
-        border-radius:5px;
-        background-color:#eee;
-    }
+
+        .pagination > span, .pagination > a {
+            padding: 10px;
+            font-size: 18px;
+        }
+
+            .pagination > span:hover, .pagination > a:hover {
+                border-radius: 5px;
+                background-color: #eee;
+            }
 
     .tags-padding {
         padding-left: 56px;
@@ -52,21 +54,19 @@
         color: orangered;
         z-index: 20;
     }
+
     .searchbox {
         box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
         padding: 30px;
         margin-bottom: 20px;
     }
 
-    .mt-2{
-        margin-top:20px
+    .mt-2 {
+        margin-top: 20px
     }
-
 </style>
 
 @*<link href="~/Content/PagedList.css" rel="stylesheet" />*@
-
-
 
 <div class="container mySearch">
     <h4 class="center-align">食譜</h4>
@@ -80,7 +80,7 @@
                             <input type="text" name="searchMenu" value="" placeholder="請輸入要查詢的食譜，EX:白醬..." />
                         </div>
                         <div class="center-align mt-2">
-                            <button class="waves-effect waves-light btn" type="submit">搜尋</button>         
+                            <button class="waves-effect waves-light btn" type="submit">搜尋</button>
                         </div>
                     </div>
                 }
@@ -117,14 +117,14 @@
                             @if (Session["Member"] == null)
                             {
 
-                                <a OnClick="return confirm("&#39;請先登入會員&#39;")" href="@Url.Action("Login","Members")" class="tooltipped heart" data-tooltip="加入我的最愛">
+                                <a OnClick="return confirm(" &#39;請先登入會員&#39;")" href="@Url.Action("Login","Members")" class="tooltipped heart" data-tooltip="加入我的最愛">
                                     <i class="small material-icons heart">favorite</i>
                                 </a>
 
                             }
                             else
                             {
-                                <a OnClick="return confirm("&#39;成功加入我的最愛&#39;")" href="@Url.Action("MyFavorite","Home")?pid=@item.fR_Id" class="tooltipped heart" data-tooltip="加入我的最愛">
+                                <a OnClick="return confirm(" &#39;成功加入我的最愛&#39;")" href="@Url.Action("MyFavorite","Home")?pid=@item.fR_Id" class="tooltipped heart" data-tooltip="加入我的最愛">
                                     <i class="small material-icons heart">favorite</i>
                                 </a>
                             }
@@ -141,21 +141,20 @@
 
 @if (TempData["message"] != null)
 {
-<script>
-    alert("查無資料")
-</script>
+    <script>
+        alert("查無資料")
+    </script>
 }
 
 <script>
-        (function ($) {
-            $(function () {
-                $('.parallax').parallax();
+    (function ($) {
+        $(function () {
+            $('.parallax').parallax();
 
-                //愛心提示訊息
-                $('.tooltipped').tooltip();
+            //愛心提示訊息
+            $('.tooltipped').tooltip();
 
-                //有用到jQuery的功能就寫在這
-            }); // end of document ready
-        })(jQuery); // end of jQuery name space
+            //有用到jQuery的功能就寫在這
+        }); // end of document ready
+    })(jQuery); // end of jQuery name space
 </script>
-
